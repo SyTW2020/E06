@@ -31,7 +31,7 @@ app.use(function (req, res, next) {
 });
 
 // Login de la aplicacion
-app.post("/login",(req,res)=>{
+app.get("/login",(req,res)=>{
   // guardamos los parametros de usuario y password
   let user = req.body.user;
   let pass = req.body.password;
@@ -68,7 +68,6 @@ app.post("/update_usuario",(req,res)=>{
   }).catch((e)=>{
     res.send(e);
   });
-
 })
 app.post("/usuario",(req,res)=>{
   let user = req.body.user;
@@ -126,8 +125,16 @@ app.delete("/habit",(req,res)=>{
   }).then((removed)=>{
     res.send(removed);
   })
-
 })
+app.delete("/usuario",(req,res)=>{
+  Usuario.findOneAndRemove({
+    nombre: req.body.name
+  }).then((removed)=>{
+    console.log("eliminado")
+    res.send(removed);
+  })
+})
+
 app.post("/habit",(req,res)=>{
   let newHabit = new Habito({
     nombre : req.body.name,
