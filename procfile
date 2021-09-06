@@ -1,0 +1,2 @@
+web: node D-Goals/server.js
+worker: node D-Goals/server/server.js
